@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+	margin: 0;padding: 0;
+}
+fieldset, img {border: 0;}
+abbr, acronym {border: 0;font-variant: normal;}
+body {line-height: 1.5;}
+ol, ul {list-style: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+caption, th {text-align: left;}
+sup, sub {font-size: 100%; vertical-align: baseline;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
+:link, :visited {text-decoration: none;}
+:focus {outline: 0;}
+.clear{clear:both;}
+body{background:#4794c4; font-family:'Courier New', 'Microsoft YaHei'; color:#6b6b6b; font-size:16px;}
+a{color:#6b6b6b;}
+.height20{height:20px;}
+.wrap{width:1000px; position:absolute; height:646px; left:0; right:0; top:0; bottom:0; margin:auto; background:#fff; box-shadow:0 10px 20px 8px rgba(0,0,0,0.1);}
+.header{width:970px; padding:0 15px; background:#f5f5f5; height:45px; border-bottom:#e5e5e5 1px solid; font-size:18px; line-height:45px; font-family:'Microsoft YaHei';}
+.chat-left{position: relative; float: left; width: 260px; z-index: 99; border-right: 1px solid #e5e5e5; height:600px;}
+.chat-left .hover{background:#f5f5f5;}
+.chat-left .avatar{padding:15px; height:60px; position: relative; cursor:pointer;}
+.avatar-head{float:left; margin-right:20px;}
+.avatar-head img{width:60px; height:60px; border-radius:50%; border:#fff 1px solid;}
+.avatar .avatar-right{position:relative;}
+.avatar-right h3{ font-weight:normal; font-size:16px;}
+.avatar-right .time{color:#b9b9b9; font-size:12px;}
+.avatar-right .unreadDot{background:#61bde7; border-radius:50%; font-size:12px; color:#fff; display:block; width:18px; height:18px; padding:5px; position:absolute; right:0px; bottom:-5px; line-height:18px; text-align:center;}
+.avatar .line{background:#e5e5e5; width:170px; height:1px; overflow:hidden; position:absolute; bottom:0; right:0px;}
+.hover .line{background:#f5f5f5;}
+/********chat 公共部分**********/
+.chat{position:relative; margin-left:261px;}
+.chatContainer{padding:0 15px; height:465px; overflow-y:scroll/*** \9; *overflow-y:scroll; _overflow-y:scroll**/;}
+.chatContainer .chatItem .time{background:#f5f5f5; font-size:12px; color:#999; padding:2px 10px; border-radius:5px; width:50px; text-align:center; margin:0 auto; margin-top:20px;}
+.chatContainer .chatItemContent{margin-top:20px;}
+.chatItemContent .chatCloud h3{color:#b0b0b0; font-family:'Microsoft YaHei'; font-weight:normal; font-size:14px;}
+.chatItemContent .chatCloud .chatCloudText{margin-top:5px; max-width:450px; position:relative;}
+.chatCloudText .cloudBody{border-radius:10px; padding:10px; font-size:14px;}
+.chatCloudText .cloudBody .img_wrap img{min-width:100px; max-width: 200px; display:block;}
+/********chat 对方**********/
+.you{float:left; width:100%;}
+.you .chatCloud{float:left;}
+.you .cloudBody{background:#f5f5f5; margin-left:8px;}
+.you .cloudArrow{background:url(../images/cloudArrowLeft.png) no-repeat; width:14px; height:34px; position:absolute; top: 10px;}
+/********chat 客服**********/
+.me{float:right; width:100%;}
+.me .avatar-head{float:right; margin-left:20px; margin-right:0px;}
+.me .chatCloud{float:right;}
+.me .chatCloud h3{text-align:right;}
+.me .cloudBody{background:#61bde7; margin-right:8px; color:#fff;}
+.me .cloudArrow{background:url(../images/cloudArrowRight.png) no-repeat; width:14px; height:34px; position:absolute; top: 10px; right:-3px;}
+
+.chat_editor{width:100%; height:134px; position:relative; z-index:100; border-top:#e5e5e5 1px solid;}
+.smilies{height:24px; padding:5px 15px; border-bottom:#e5e5e5 1px solid; overflow:hidden;}
+.hotSmilies li{float:left; margin-right:10px;}
+.allBt{float:right; background:#f1f0f1; border-radius:5px; display:block; padding:3px 10px; line-height:20px; font-size:12px;}
+.inputArea textarea{width:88%; height:79px; padding:10px 1%; border:none; background:#f5f5f5; float:left; font-family:'Microsoft YaHei'; color:#6b6b6b; font-size:14px;}
+.inputArea input{background:#61bde7; width:10%; height:99px; font-family:'Microsoft YaHei'; color:#fff; border:none; cursor:pointer;}
+.smiliesAll{position:absolute; right:10px; bottom:144px; display:none;} 
+.box{padding:10px; background:#fff; box-shadow:0 0px 10px 3px rgba(0,0,0,0.1); border-radius:10px;}
+.smiliesList{width:374px; height:200px;}
+.smiliesArrow{background:url(../images/icon.png) no-repeat; width:24px; height:12px; position:relative; left:340px;}
+
+.avatarInfro{width:300px; display:none;}
