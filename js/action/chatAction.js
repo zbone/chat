@@ -30,7 +30,8 @@ $.ajax({
 //点击左侧聊天列表
 $('.avatar').on('click',function(){
 	$(this).addClass('hover').siblings().removeClass('hover');	//设置点击后的背景颜色
-	$('.chatHeight').empty();	//清除聊天	
+	$('.chatHeight').empty();	//清除聊天
+	$('.chat_editor').fadeIn("300");
 });
 
 //点击全部表情 显示隐藏
@@ -51,6 +52,11 @@ $('.boxClose a').on('click',function(){
 });
 
 //发送消息
+$(".inputArea textarea").ctrlEnter("button", function () {
+	webchat.addMessageDemo();
+	$('.inputArea textarea').val('');
+	$('.chatContainer').scrollTop($('.chatHeight').height());
+});
 var onMessageSend = function(chatMessage) {
 	webchat.addMessageDemo();
 	$('.inputArea textarea').val('');
