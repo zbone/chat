@@ -169,6 +169,10 @@ a {
 	height: 445px;
 	overflow-y: scroll/*** \9; *overflow-y:scroll; _overflow-y:scroll**/;
 }
+.chatHeight{
+	display: block;
+	overflow: hidden;
+}
 .chatContainer .chatItem .time {
 	background: #f5f5f5;
 	font-size: 12px;

@@ -54,6 +54,7 @@ var webchat = {
         chatMessage['timeStamp'] = new Date();
         chatMessage['unread'] = true;
         chatMessage['type'] = MessageType.MESSAGE_TYPE__CHAT_TEXT;
+
         if (this._chatMap[chatMessage['from']] == null) {
 
             this._chatMap.put(chatMessage['from'], new Array());
