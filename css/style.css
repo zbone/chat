@@ -99,6 +99,9 @@ a {
 	position: relative;
 	cursor: pointer;
 }
+.avatarID{
+	display: none;
+}
 .avatar-head {
 	float: left;
 	margin-right: 20px;
@@ -156,6 +159,7 @@ a {
 	position:absolute;
 	top:-45px;
 	right:0;
+	display: none;
 }
 .avatarIcon img {
 	height: 25px;

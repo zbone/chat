@@ -31,7 +31,38 @@ $.ajax({
 $('.avatar').on('click',function(){
 	$(this).addClass('hover').siblings().removeClass('hover');	//设置点击后的背景颜色
 	$('.chatHeight').empty();	//清除聊天
-	$('.chat_editor').fadeIn("300");
+	$('.chat_editor').fadeIn("300"); //textarea出现
+	$('.avatarIcon').fadeIn("300"); //详情icon出现
+	$('.boxBg').empty();
+	var id = $(this).find('.avatarID').html();
+	$.ajax({
+		async : false,
+		type:'get',
+		url:'userInfro.json',
+		data: {"id":id},
+		xhrFields: {
+			withCredentials: true
+		},
+		processData: true,
+		success: function(data){
+			var AvatarInfroTemplate = Handlebars.compile($("#avatarInfro").html());
+			Handlebars.registerHelper("compare",function(v1,v2,options){
+				if(v1==v2){
+					return options.fn(this);
+				}else{
+					return options.inverse(this);
+				}
+			});
+			$('.boxBg').append(AvatarInfroTemplate(data));
+			$('.boxClose a').on('click',function(){
+				$('.boxBg').fadeOut("300");
+
+			});
+		},
+		error: function(a,b,c){
+			alert('好友详情加载失败');
+		}
+	});
 });
 
 //点击全部表情 显示隐藏
@@ -46,9 +77,6 @@ $(document).click(function(){
 $('.avatarIcon a').on('click',function(e){
 	$('.boxBg').fadeToggle("300");
 	e.stopPropagation();
-});
-$('.boxClose a').on('click',function(){
-	$('.boxBg').fadeOut("300");
 });
 
 //发送消息

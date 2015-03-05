@@ -21,6 +21,7 @@
 				</div>
 				<div class="avatar-right">
 					<h3>{{user_name}}</h3>
+                    <span class="avatarID">{{id}}</span>
 					<span class="time">{{time}}</span>
 					<span class="unreadDot">{{unreadDot}}</span>
 				</div>
@@ -146,25 +147,29 @@
         <div class="smiliesArrow"></div>
     </div>
 </div>
-<div class="boxBg">
+<script id="avatarInfro" type="text/x-handlebars-template">
     <div class="box avatarInfro">
         <div class="boxClose">
             <a href="javascript:;"><img src="images/close2.png" height="15"></a>
         </div>
         <div class="infro">
-        	<div class="infroLeft">
-            	<img src="images/01.jpg">
+            <div class="infroLeft">
+                <img src="images/01.jpg">
                 <a href="#">更多信息</a>
             </div>
             <div class="infroRight">
-            	<p><span>昵称：</span><span>干菜包的小伙伴这个名字有么</span></p>
-            	<p><span>ID：</span><span>NO. 978212</span></p>
-            	<p><span>年龄：</span><span>25</span></p>
-            	<p><span>性别：</span><span>男</span></p>
+                <p><span>昵称：</span><span>{{user_name}}</span></p>
+                <p><span>ID：</span><span>NO. {{id}}</span></p>
+                <p><span>年龄：</span><span>{{age}}</span></p>
+                <p><span>性别：</span><span>
+                    {{#compare gender 1}}男{{/compare}}
+                    {{#compare gender 2}}女{{/compare}}
+                </span></p>
             </div>
         </div>
     </div>
-</div>
+</script>
+<div class="boxBg"></div>
 <script type="text/javascript" src="http://static.dface.cn/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="http://static.dface.cn/js/jquery.nicescroll.js"></script>
 <script type="text/javascript" src="http://static.dface.cn/js/handlebars.js"></script>
