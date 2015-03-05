@@ -33,8 +33,10 @@ $('.avatar').on('click',function(){
 	$('.chatHeight').empty();	//清除聊天
 	$('.chat_editor').fadeIn("300"); //textarea出现
 	$('.avatarIcon').fadeIn("300"); //详情icon出现
-	$('.boxBg').empty();
-	var id = $(this).find('.avatarID').html();
+	$('.boxBg').empty(); //清除上次好友详情
+	var id = $(this).find('.avatarID').html();	//获取好友列表中的ID
+	$(".inputArea textarea").focus();	//获取输入框焦点
+	//ajax拉去好友详情信息
 	$.ajax({
 		async : false,
 		type:'get',
@@ -78,17 +80,25 @@ $('.avatarIcon a').on('click',function(e){
 	$('.boxBg').fadeToggle("300");
 	e.stopPropagation();
 });
+//点击表情
+$('.hotSmilies li').on('click',function(){
+	$(".inputArea textarea").focus();	//获取输入框焦点
+	$(".inputArea textarea").val($(".inputArea textarea").val() + $(this).find('.emoji').attr("alt"));
+	twemoji.parse(document.getElementsByTagName('textarea')[0].value, {size: 36});
+})
 
 //发送消息
 $(".inputArea textarea").ctrlEnter("button", function () {
 	webchat.addMessageDemo();
 	$('.inputArea textarea').val('');
 	$('.chatContainer').scrollTop($('.chatHeight').height());
+	twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
 });
 var onMessageSend = function(chatMessage) {
 	webchat.addMessageDemo();
 	$('.inputArea textarea').val('');
 	$('.chatContainer').scrollTop($('.chatHeight').height());
+	twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
 }
 var myNotificationListener = {
 	onMessageReceived: function (chatMessage) {

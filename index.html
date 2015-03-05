@@ -90,25 +90,25 @@
         </div>
         <div class="chat_editor">
         	<div class="smilies">
-            	<ul class="hotSmilies">
-                	<li><a href="#"><img src="images/smilies/icon_arrow.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_biggrin.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_confused.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_cool.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_cry.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_eek.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_exclaim.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_idea.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_lol.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_mad.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_neutral.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_question.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_lol.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_mad.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_neutral.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_question.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_idea.gif"></a></li>
-                	<li><a href="#"><img src="images/smilies/icon_mad.gif"></a></li>
+            	<ul class="hotSmilies" id="emoji-list">
+                    <li alt="&#x1F600">&#x1F600;</li>
+                    <li>&#x1F601;</li>
+                    <li>&#x1F602;</li>
+                    <li>&#x1F603;</li>
+                    <li>&#x1F604;</li>
+                    <li>&#x1F605;</li>
+                    <li>&#x1F606;</li>
+                    <li>&#x1F607;</li>
+                    <li>&#x1F608;</li>
+                    <li>&#x1F609;</li>
+                    <li>&#x1F60A;</li>
+                    <li>&#x1F60B;</li>
+                    <li>&#x1F60C;</li>
+                    <li>&#x1F60D;</li>
+                    <li>&#x1F60E;</li>
+                    <li>&#x1F60F;</li>
+                    <li>&#x1F610;</li>
+                    <li>&#x1F611;</li>
                 </ul>
                 <span class="allBt"><a href="#">全部表情</a></span>
             </div>
@@ -173,11 +173,16 @@
 <script type="text/javascript" src="http://static.dface.cn/js/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="http://static.dface.cn/js/jquery.nicescroll.js"></script>
 <script type="text/javascript" src="http://static.dface.cn/js/handlebars.js"></script>
+<script type="text/javascript" src="http://static.dface.cn/js/twemoji.min.js"></script>
 <script type="text/javascript" src="js/lib/ctrlEnter.js"></script>
 <script type="text/javascript" src="js/lib/map.js"></script>
 <script type="text/javascript" src="js/lib/zoom.min.js"></script>
 <script type="text/javascript" src="js/chatmessage.js"></script>
 <script type="text/javascript" src="js/webchat.js"></script>
 <script type="text/javascript" src="js/action/chatAction.js"></script>
+<script>
+    twemoji.parse(document.getElementById('emoji-list'), {size: 36});
+</script>
+
 </body>
 </html>

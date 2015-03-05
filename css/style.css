@@ -212,6 +212,9 @@ a {
 	max-width: 200px;
 	display: block;
 }
+.chatCloudText .cloudBody .emoji{
+	margin-right: 3px;
+}
 /********chat 对方**********/
 .you {
 	float: left;
@@ -277,6 +280,12 @@ a {
 .hotSmilies li {
 	float: left;
 	margin-right: 10px;
+	cursor: pointer;
+}
+img.emoji {
+	width: 24px;
+	height: 24px;
+	vertical-align: text-bottom;
 }
 .allBt {
 	float: right;
