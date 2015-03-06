@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bbf76d3b-d59c-45c4-a5b2-cc0fbcfb26cc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/action/chatAction.js" afterPath="$PROJECT_DIR$/js/action/chatAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/webchat.js" afterPath="$PROJECT_DIR$/js/webchat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kefu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="chatAction.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chatAction.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/action/chatAction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="2618">
-              <caret line="86" column="99" selection-start-line="86" selection-start-column="99" selection-end-line="86" selection-end-column="99" />
+            <state vertical-scroll-proportion="0.38101983" vertical-offset="1771" max-vertical-offset="2907">
+              <caret line="120" column="76" selection-start-line="120" selection-start-column="76" selection-end-line="120" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -59,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4492958" vertical-offset="1245" max-vertical-offset="3281">
-              <caret line="92" column="43" selection-start-line="92" selection-start-column="35" selection-end-line="92" selection-end-column="43" />
+            <state vertical-scroll-proportion="-23.538462" vertical-offset="1224" max-vertical-offset="3281">
+              <caret line="108" column="50" selection-start-line="92" selection-start-column="20" selection-end-line="108" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -85,8 +82,8 @@
         <option value="$USER_HOME$/Desktop/twemoji-gh-pages/preview.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/webchat.js" />
-        <option value="$PROJECT_DIR$/js/action/chatAction.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/action/chatAction.js" />
       </list>
     </option>
   </component>
@@ -274,7 +271,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="886" extended-state="7" />
+    <frame x="-8" y="-8" width="1456" height="886" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -586,10 +583,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../yuepao/public/js/share.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0894526" vertical-offset="509" max-vertical-offset="1462">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/qqface/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1853">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/chatmessage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
           <caret line="17" column="10" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.538462" vertical-offset="1224" max-vertical-offset="3281">
+          <caret line="108" column="50" selection-start-line="92" selection-start-column="20" selection-end-line="108" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -604,16 +625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/action/chatAction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="2618">
-          <caret line="86" column="99" selection-start-line="86" selection-start-column="99" selection-end-line="86" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4492958" vertical-offset="1245" max-vertical-offset="3281">
-          <caret line="92" column="43" selection-start-line="92" selection-start-column="35" selection-end-line="92" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.38101983" vertical-offset="1771" max-vertical-offset="2907">
+          <caret line="120" column="76" selection-start-line="120" selection-start-column="76" selection-end-line="120" selection-end-column="76" />
           <folding />
         </state>
       </provider>
