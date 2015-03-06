@@ -26,7 +26,6 @@ $.ajax({
 		alert('好友列表加载失败');
 	}
 });
-
 //点击左侧聊天列表
 $('.avatar').on('click',function(){
 	$(this).addClass('hover').siblings().removeClass('hover');	//设置点击后的背景颜色
@@ -67,6 +66,12 @@ $('.avatar').on('click',function(){
 	});
 });
 
+//点击人物信息图标 显示隐藏
+$('.avatarIcon a').on('click',function(e){
+	$('.boxBg').fadeToggle("300");
+	e.stopPropagation();
+});
+
 //点击全部表情 显示隐藏
 $('.allBt').on('click',function(e){
 	$('.smiliesAll').fadeToggle("300");
@@ -75,16 +80,15 @@ $('.allBt').on('click',function(e){
 $(document).click(function(){
 	$('.smiliesAll').fadeOut("300");
 })
-//点击人物信息图标 显示隐藏
-$('.avatarIcon a').on('click',function(e){
-	$('.boxBg').fadeToggle("300");
-	e.stopPropagation();
-});
 //点击表情
 $('.hotSmilies li').on('click',function(){
 	$(".inputArea textarea").focus();	//获取输入框焦点
-	$(".inputArea textarea").val($(".inputArea textarea").val() + $(this).find('.emoji').attr("alt"));
-	twemoji.parse(document.getElementsByTagName('textarea')[0].value, {size: 36});
+
+	$(".inputArea textarea").val($(".inputArea textarea").val() + '[' + $(this).attr("title") + ']');
+
+	//$(".inputArea textarea").val($(".inputArea textarea").val() + $(this).find('.emoji').attr("alt"));
+	//$('.textareaDiv').html('<pre>'+$(this).find('.emoji').attr("alt")+'</pre>');
+	twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
 })
 
 //发送消息

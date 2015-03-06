@@ -19,7 +19,8 @@ var NotificationListener = {
     }
 }
 
-var webchat = {
+var webchat;
+webchat = {
     _listener: null,
     _chatMap: null,
     setAccount: function (userName, userPassword) {
@@ -39,6 +40,19 @@ var webchat = {
     },
     connect: function () {
 
+    },
+    onConnect: function (status) {
+        if (status == Strophe.Status.CONNECTING) {
+            alert('Strophe连接中');
+        } else if (status == Strophe.Status.CONNFAIL) {
+            alert('Strophe连接失败');
+        } else if (status == Strophe.Status.DISCONNECTING) {
+            alert('Strophe断开中');
+        } else if (status == Strophe.Status.DISCONNECTED) {
+            alert('Strophe已断开');
+        } else if (status == Strophe.Status.CONNECTED) {
+            alert('Strophe已连接');
+        }
     },
     disconnect: function () {
 
@@ -65,4 +79,4 @@ var webchat = {
 
         this._listener.onMessageReceived(chatMessage);
     }
-}
+};
