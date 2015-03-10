@@ -1,5 +1,5 @@
 //滚动条美化
-$(".chat-left,.smiliesList").niceScroll({  
+$(".chat-left,.smiliesList").niceScroll({
 	cursorcolor:"#bbb",  
 	cursoropacitymax:1,  
 	touchbehavior:false,  
@@ -7,7 +7,7 @@ $(".chat-left,.smiliesList").niceScroll({
 	cursorborder:"0",  
 	cursorborderradius:"5px",
 	bouncescroll:true
-}); 
+});
 //获取好友列表
 $.ajax({
 	async : false,
@@ -19,6 +19,7 @@ $.ajax({
 	},
 	processData: true,
 	success: function(data){
+		//alert(data.id);
 		var AvatarTemplate = Handlebars.compile($("#avatar").html());
 		$('.chat-left').append(AvatarTemplate(data));
 	},
