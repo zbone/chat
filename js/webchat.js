@@ -1,26 +1,28 @@
+var BOSH_SERVICE = 'http://shop.dface.cn/http-bind/'
+var connection = null;
+
+$(document).ready(function () {
+    connection = new Strophe.Connection(BOSH_SERVICE);
+    connection.connect("546afc5041593103f39d0100" + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
+});
+
 var NotificationListener = {
     onMessageReceived: function (ChatMessage) {
-
     }
     ,
     onTextSending: function (ChatMessage) {
-
     }
     ,
     onTextSendSuccess: function (ChatMessage) {
-
     }
     ,
     onNetworkConnected: function () {
     }
     ,
     onNetWorkDisconnect: function () {
-
     }
 }
-
-var webchat;
-webchat = {
+var webchat = {
     _listener: null,
     _chatMap: null,
     setAccount: function (userName, userPassword) {
@@ -36,26 +38,27 @@ webchat = {
 
     },
     chatToUserTextAgain: function (packetId, uid, text) {
-
-    },
-    connect: function () {
-
     },
     onConnect: function (status) {
         if (status == Strophe.Status.CONNECTING) {
-            alert('Strophe连接中');
         } else if (status == Strophe.Status.CONNFAIL) {
-            alert('Strophe连接失败');
         } else if (status == Strophe.Status.DISCONNECTING) {
-            alert('Strophe断开中');
         } else if (status == Strophe.Status.DISCONNECTED) {
-            alert('Strophe已断开');
         } else if (status == Strophe.Status.CONNECTED) {
-            alert('Strophe已连接');
+            connection.addHandler(webchat.onMessage, null, 'message', null, null,  null);
+            connection.send($pres().tree());
         }
     },
-    disconnect: function () {
+    onMessage:function(msg){
+        var to = msg.getAttribute('to');
+        var from = msg.getAttribute('from');
+        var type = msg.getAttribute('type');
+        var elems = msg.getElementsByTagName('body');
 
+        if (type == "chat" && elems.length > 0) {
+            alert(Strophe.getText(elems[0]));
+        }
+        return true;
     },
     addMessageDemo: function () {
         var chatMessage = new Array();

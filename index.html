@@ -113,7 +113,7 @@
         	<div class="inputArea">
             	<form>
             		<textarea></textarea>
-                    <button type="button" onClick="onMessageSend()">发送</button>
+                    <button type="button">发送</button>
                 </form>
             </div>
         </div>
@@ -180,7 +180,25 @@
 <script type="text/javascript" src="js/webchat.js"></script>
 <script type="text/javascript" src="js/action/chatAction.js"></script>
 <script>
+    //avatar事件
+    avatarAction.getAvatarList();
+    avatarAction.clickAvatarList();
+    avatarAction.clickAvatarIcon();
+    //编辑框点击事件
+    chatEditorAction.clickSmilies();
+    chatEditorAction.MessageSend();
+    //emoji表情
     twemoji.parse(document.getElementById('emoji-list'), {size: 36});
+    //滚动条美化
+    $(".chat-left,.smiliesList").niceScroll({
+        cursorcolor:"#bbb",
+        cursoropacitymax:1,
+        touchbehavior:false,
+        cursorwidth:"10px",
+        cursorborder:"0",
+        cursorborderradius:"5px",
+        bouncescroll:true
+    });
 </script>
 
 
