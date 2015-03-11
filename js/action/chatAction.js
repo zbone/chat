@@ -1,3 +1,4 @@
+var	kfid = '546afc5041593103f39d0100';
 //avatar事件
 var avatarAction = {
 	getAvatarList:function(){
@@ -5,18 +6,19 @@ var avatarAction = {
 			async : false,
 			type:'get',
 			url:'friend.json',
-			data: '',
+			data: {"id":kfid},
 			xhrFields: {
 				withCredentials: true
 			},
 			processData: true,
 			success: function(data){
-				//alert(data.id);
+				$('.loading').fadeOut("100");
 				var AvatarTemplate = Handlebars.compile($("#avatar").html());
 				$('.chat-left').append(AvatarTemplate(data));
 			},
 			error: function(a,b,c){
-				alert('好友列表加载失败');
+				$('.loading').remove();
+				$('.chat-left').append('<div class="update"><a href="javascript:location.reload();">重新加载</a></div>');
 			}
 		});
 	},
@@ -160,6 +162,7 @@ var myNotificationListener = {
 				async : false,
 				type:'get',
 				url:'http://shop.dface.cn/api_user_info/basic?id='+uid+'&Access-Control-Allow-Origin=1',
+
 				success: function(data){
 					var YouMessageReceived = '';
 					YouMessageReceived += '<div class="chatItem you">'
@@ -204,6 +207,6 @@ webchat.setAccount("zhang3", "123456");
 webchat.setNotificationListener(myNotificationListener);
 $(document).ready(function () {
 	connection = new Strophe.Connection(BOSH_SERVICE);
-	connection.connect("546afc5041593103f39d0100" + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
+	connection.connect(kfid + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
 });
 
