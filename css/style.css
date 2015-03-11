@@ -349,14 +349,14 @@ img.emoji {
 	display:none;
 }
 .avatarInfro {
-	width: 300px;
+	width: 360px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	height: 200px;
+	height: 170px;
 }
 .avatarInfro .boxClose {
 	height: 20px;
@@ -384,7 +384,7 @@ img.emoji {
 }
 .infroRight {
 	float: left;
-	width: 180px;
+	width: 240px;
 	font-size: 14px;
 	line-height: 200%;
 }
@@ -400,5 +400,5 @@ img.emoji {
 	border-bottom: #e5e5e5 1px solid;
 	display: block;
 	float: left;
-	width: 130px;
+	width: 190px;
 }

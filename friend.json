@@ -1,6 +1,6 @@
 [
   {
-    "id": "01",
+    "id": "54ff9ce6415931398ca50100",
     "user_name": "Benson",
     "logo_thumb": "http://logo.img.aliyuncs.com/54d9c1c64159314afe030000/0.jpg@100w_100h_1e_1c_80Q.jpg",
     "time": "11:30",
@@ -9,7 +9,7 @@
     "gender":"1"
   },
   {
-    "id": "02",
+    "id": "533001c1c90d8ba71800002e",
     "user_name": "王少东",
     "logo_thumb": "http://logo.img.aliyuncs.com/54d9c1c64159314afe030000/0.jpg@100w_100h_1e_1c_80Q.jpg",
     "time": "11:30",
@@ -18,20 +18,11 @@
     "gender":"1"
   },
   {
-    "id": "03",
+    "id": "529c225ac90d8b5ce1000069",
     "user_name": "米麻里麻里哄",
     "logo_thumb": "http://logo.img.aliyuncs.com/54d9c1c64159314afe030000/0.jpg@100w_100h_1e_1c_80Q.jpg",
     "time": "11:30",
     "unreadDot": "2",
-    "age":"21",
-    "gender":"1"
-  },
-  {
-    "id": "04",
-    "user_name": "MCC",
-    "logo_thumb": "http://logo.img.aliyuncs.com/54d9c1c64159314afe030000/0.jpg@100w_100h_1e_1c_80Q.jpg",
-    "time": "10:30",
-    "unreadDot": "4",
     "age":"21",
     "gender":"1"
   }

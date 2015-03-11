@@ -33,7 +33,7 @@ var avatarAction = {
 			$.ajax({
 				async : false,
 				type:'get',
-				url:'userInfro.json',
+				url:'http://shop.dface.cn/api_user_info/basic?id='+id+'&Access-Control-Allow-Origin=1',
 				data: {"id":id},
 				xhrFields: {
 					withCredentials: true
@@ -108,46 +108,84 @@ var chatEditorAction = {
 var myNotificationListener = {
 	onMessageReceived: function (chatMessage) {
 		var newChatMessage = chatMessage['text'].replace(/\n/g, '_@').replace(/\r/g, '_#');
-			newChatMessage = newChatMessage.replace(/_#_@/g, '<br/>');//IE7-8
-			newChatMessage = newChatMessage.replace(/_@/g, '<br/>');//IE9、FF、chrome
-			newChatMessage = newChatMessage.replace(/\[哭脸\]/g, '&#x1F602;');
-			newChatMessage = newChatMessage.replace(/\[笑脸\]/g, '&#x1F601;');
-			newChatMessage = newChatMessage.replace(/\[哭脸\]/g, '&#x1F602;');
-			newChatMessage = newChatMessage.replace(/\[脸1\]/g, '&#x1F603;');
-			newChatMessage = newChatMessage.replace(/\[脸2\]/g, '&#x1F604;');
-			newChatMessage = newChatMessage.replace(/\[脸3\]/g, '&#x1F605;');
-			newChatMessage = newChatMessage.replace(/\[脸4\]/g, '&#x1F606;');
-			newChatMessage = newChatMessage.replace(/\[脸5\]/g, '&#x1F607;');
-			newChatMessage = newChatMessage.replace(/\[脸6\]/g, '&#x1F608;');
-			newChatMessage = newChatMessage.replace(/\[脸7\]/g, '&#x1F609;');
-			newChatMessage = newChatMessage.replace(/\[脸8\]/g, '&#x1F60A;');
-			newChatMessage = newChatMessage.replace(/\[脸9\]/g, '&#x1F60B;');
-			newChatMessage = newChatMessage.replace(/\[脸10\]/g, '&#x1F60C;');
-			newChatMessage = newChatMessage.replace(/\[脸11\]/g, '&#x1F60D;');
-			newChatMessage = newChatMessage.replace(/\[脸12\]/g, '&#x1F60E;');
-			newChatMessage = newChatMessage.replace(/\[脸13\]/g, '&#x1F60F;');
-			newChatMessage = newChatMessage.replace(/\[脸14\]/g, '&#x1F610;');
-			newChatMessage = newChatMessage.replace(/\[脸15\]/g, '&#x1F611;');
+		newChatMessage = newChatMessage.replace(/_#_@/g, '<br/>');//IE7-8
+		newChatMessage = newChatMessage.replace(/_@/g, '<br/>');//IE9、FF、chrome
+		newChatMessage = newChatMessage.replace(/\[哭脸\]/g, '&#x1F602;');
+		newChatMessage = newChatMessage.replace(/\[笑脸\]/g, '&#x1F601;');
+		newChatMessage = newChatMessage.replace(/\[哭脸\]/g, '&#x1F602;');
+		newChatMessage = newChatMessage.replace(/\[脸1\]/g, '&#x1F603;');
+		newChatMessage = newChatMessage.replace(/\[脸2\]/g, '&#x1F604;');
+		newChatMessage = newChatMessage.replace(/\[脸3\]/g, '&#x1F605;');
+		newChatMessage = newChatMessage.replace(/\[脸4\]/g, '&#x1F606;');
+		newChatMessage = newChatMessage.replace(/\[脸5\]/g, '&#x1F607;');
+		newChatMessage = newChatMessage.replace(/\[脸6\]/g, '&#x1F608;');
+		newChatMessage = newChatMessage.replace(/\[脸7\]/g, '&#x1F609;');
+		newChatMessage = newChatMessage.replace(/\[脸8\]/g, '&#x1F60A;');
+		newChatMessage = newChatMessage.replace(/\[脸9\]/g, '&#x1F60B;');
+		newChatMessage = newChatMessage.replace(/\[脸10\]/g, '&#x1F60C;');
+		newChatMessage = newChatMessage.replace(/\[脸11\]/g, '&#x1F60D;');
+		newChatMessage = newChatMessage.replace(/\[脸12\]/g, '&#x1F60E;');
+		newChatMessage = newChatMessage.replace(/\[脸13\]/g, '&#x1F60F;');
+		newChatMessage = newChatMessage.replace(/\[脸14\]/g, '&#x1F610;');
+		newChatMessage = newChatMessage.replace(/\[脸15\]/g, '&#x1F611;');
 		if($.trim(chatMessage['text']) == ''){
 		}else{
 			var MeMessageReceived = '';
-				MeMessageReceived += '<div class="chatItem me">';
-				MeMessageReceived += '<div class="time">12:00</div>'
-				MeMessageReceived += '<div class="chatItemContent">'
-				MeMessageReceived += '<div class="avatar-head">'
-				MeMessageReceived += '<a href="#"><img src="images/02.jpg"></a>'
-				MeMessageReceived += '</div>'
-				MeMessageReceived += '<div class="chatCloud">'
-				MeMessageReceived += '<h3>干菜包的小伙伴</h3>'
-				MeMessageReceived += '<div class="chatCloudText">'
-				MeMessageReceived += '<div class="cloudBody">' +newChatMessage+ '</div>'
-				MeMessageReceived += '<div class="cloudArrow"></div>'
-				MeMessageReceived += '</div>'
-				MeMessageReceived += '</div>'
-				MeMessageReceived += '</div>'
-				MeMessageReceived += '</div>'
+			MeMessageReceived += '<div class="chatItem me">'
+			MeMessageReceived += '<div class="time">12:00</div>'
+			MeMessageReceived += '<div class="chatItemContent">'
+			MeMessageReceived += '<div class="avatar-head">'
+			MeMessageReceived += '<a href="#"><img src="images/02.jpg"></a>'
+			MeMessageReceived += '</div>'
+			MeMessageReceived += '<div class="chatCloud">'
+			MeMessageReceived += '<h3>干菜包的小伙伴</h3>'
+			MeMessageReceived += '<div class="chatCloudText">'
+			MeMessageReceived += '<div class="cloudBody">' +newChatMessage+ '</div>'
+			MeMessageReceived += '<div class="cloudArrow"></div>'
+			MeMessageReceived += '</div>'
+			MeMessageReceived += '</div>'
+			MeMessageReceived += '</div>'
+			MeMessageReceived += '</div>'
 			$('.chatHeight').append(MeMessageReceived);
 		}
+	},
+	onMessage:function(msg){
+		var to = msg.getAttribute('to');
+		var from = msg.getAttribute('from');
+		var type = msg.getAttribute('type');
+		var elems = msg.getElementsByTagName('body');
+		var uid = from.split("@")[0];
+		if (type == "chat" && elems.length > 0) {
+			$.ajax({
+				async : false,
+				type:'get',
+				url:'http://shop.dface.cn/api_user_info/basic?id='+uid+'&Access-Control-Allow-Origin=1',
+				success: function(data){
+					var YouMessageReceived = '';
+					YouMessageReceived += '<div class="chatItem you">'
+					YouMessageReceived += '<div class="time">12:00</div>'
+					YouMessageReceived += '<div class="chatItemContent">'
+					YouMessageReceived += '<div class="avatar-head">'
+					YouMessageReceived += '<a href="#"><img src="'+data.logo_thumb+'"></a>'
+					YouMessageReceived += '</div>'
+					YouMessageReceived += '<div class="chatCloud">'
+					YouMessageReceived += '<h3>'+data.name+'</h3>'
+					YouMessageReceived += '<div class="chatCloudText">'
+					YouMessageReceived += '<div class="cloudBody">' + Strophe.getText(elems[0]) + '</div>'
+					YouMessageReceived += '<div class="cloudArrow"></div>'
+					YouMessageReceived += '</div>'
+					YouMessageReceived += '</div>'
+					YouMessageReceived += '</div>'
+					YouMessageReceived += '</div>'
+					$('.chatHeight').append(YouMessageReceived);
+				},
+				error: function(a,b,c){
+					alert('信息读取失败');
+				}
+			});
+		}
+		$('.chatContainer').scrollTop($('.chatHeight').height());
+		return true;
 	},
 	onTextSending: function (ChatMessage) {
 
@@ -164,3 +202,8 @@ var myNotificationListener = {
 webchat.init("xmpp.dface.cn", 5000, "webchat");
 webchat.setAccount("zhang3", "123456");
 webchat.setNotificationListener(myNotificationListener);
+$(document).ready(function () {
+	connection = new Strophe.Connection(BOSH_SERVICE);
+	connection.connect("546afc5041593103f39d0100" + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
+});
+

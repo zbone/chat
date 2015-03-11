@@ -70,7 +70,7 @@
         </div>
     	<div class="chatContainer">
         	<div class="chatHeight">
-                <!--<div class="chatItem you">
+                <div class="chatItem you">
                     <div class="time">12:00</div>
                     <div class="chatItemContent">
                         <div class="avatar-head">
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                </div>-->
+                </div>
             </div>
         </div>
         <div class="chat_editor">
@@ -152,13 +152,15 @@
         </div>
         <div class="infro">
             <div class="infroLeft">
-                <img src="images/01.jpg">
+                <img src="{{logo_thumb}}">
                 <a href="#">更多信息</a>
             </div>
             <div class="infroRight">
-                <p><span>昵称：</span><span>{{user_name}}</span></p>
-                <p><span>ID：</span><span>NO. {{id}}</span></p>
-                <p><span>年龄：</span><span>{{age}}</span></p>
+                <p><span>昵称：</span><span>{{name}}</span></p>
+                <p><span>ID：</span><span>{{id}}</span></p>
+                {{#if birthday}}
+                <p><span>生日：</span><span>{{birthday}}</span></p>
+                {{/if}}
                 <p><span>性别：</span><span>
                     {{#compare gender 1}}男{{/compare}}
                     {{#compare gender 2}}女{{/compare}}
