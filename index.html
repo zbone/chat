@@ -23,69 +23,57 @@
 					<h3>{{user_name}}</h3>
                     <span class="avatarID">{{id}}</span>
 					<span class="time">{{time}}</span>
-					<span class="unreadDot">{{unreadDot}}</span>
+                    {{#if unreadDot}}
+                    <span class="unreadDot">{{unreadDot}}</span>
+                    {{/if}}
 				</div>
 				<div class="line"></div>
 			</div>
 		{{/each}}	
 	</script>
     <div class="chat-left"><div class="loading"><img src="images/loading.gif"> </div></div>
-	<!--<script id="you" type="text/x-handlebars-template">
-        <div class="chatItem you">
-            <div class="time">12:00</div>
-            <div class="chatItemContent">
-                <div class="avatar-head">
-                    <a href="#"><img src="images/01.jpg"></a>
-                </div>
-                <div class="chatCloud">
-                    <h3>干菜包的小伙伴</h3>
-                    <div class="chatCloudText">
-                        <div class="cloudBody"><span class="img_wrap"><a href="images/01.jpg"><img src="images/01.jpg"></a></span></div>
-                        <div class="cloudArrow"></div>
+	<script id="chatItem" type="text/x-handlebars-template">
+        {{#each this}}
+            {{#with to}}
+                {{#compare id}}
+                    <div class="chatItem you">
+                        <div class="time">{{../../time}}</div>
+                        <div class="chatItemContent">
+                            <div class="avatar-head"><img src="{{../../from.logo}}"></div>
+                            <div class="chatCloud">
+                                <h3>{{../../from.name}}</h3>
+                                <div class="chatCloudText">
+                                    <div class="cloudBody">{{../../msg}}</div>
+                                    <div class="cloudArrow"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                {{else}}
+                    <div class="chatItem me">
+                        <div class="time">{{../../time}}</div>
+                        <div class="chatItemContent">
+                            <div class="avatar-head"><img src="{{logo}}"></div>
+                            <div class="chatCloud">
+                                <h3>{{name}}</h3>
+                                <div class="chatCloudText">
+                                    <div class="cloudBody">{{../../msg}}</div>
+                                    <div class="cloudArrow"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/compare}}
+            {{/with}}
+
+        {{/each}}
     </script>
-    <script id="me" type="text/x-handlebars-template">
-        <div class="chatItem me">
-            <div class="time">12:00</div>
-            <div class="chatItemContent">
-                <div class="avatar-head">
-                    <a href="#"><img src="images/02.jpg"></a>
-                </div>
-                <div class="chatCloud">
-                    <h3>干菜包的小伙伴</h3>
-                    <div class="chatCloudText">
-                        <div class="cloudBody">gfgf</div>
-                        <div class="cloudArrow"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </script>-->
     <div class="chat">
     	<div class="avatarIcon">
         	<a href="javascript:;"><img src="images/iconHead.png"></a>
         </div>
     	<div class="chatContainer">
-        	<div class="chatHeight">
-                <!--<div class="chatItem you">
-                    <div class="time">12:00</div>
-                    <div class="chatItemContent">
-                        <div class="avatar-head">
-                            <a href="#"><img src="images/02.jpg"></a>
-                        </div>
-                        <div class="chatCloud">
-                            <h3>干菜包的小伙伴</h3>
-                            <div class="chatCloudText">
-                                <div class="cloudBody"><span class="img_wrap"><a href="../3win2-1/images/bg2.png"><img src="../3win2-1/images/bg2.png"></a></span></div>
-                                <div class="cloudArrow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-            </div>
+        	<div class="chatHeight"></div>
         </div>
         <div class="chat_editor">
         	<div class="smilies">
@@ -178,28 +166,43 @@
 <script type="text/javascript" src="js/lib/ctrlEnter.js"></script>
 <script type="text/javascript" src="js/lib/map.js"></script>
 <script type="text/javascript" src="js/lib/zoom.min.js"></script>
+<script type="text/javascript" src="js/getData.js"></script>
 <script type="text/javascript" src="js/chatmessage.js"></script>
 <script type="text/javascript" src="js/webchat.js"></script>
 <script type="text/javascript" src="js/action/chatAction.js"></script>
 <script>
-    //avatar事件
-    avatarAction.getAvatarList();
-    avatarAction.clickAvatarList();
-    avatarAction.clickAvatarIcon();
-    //编辑框点击事件
-    chatEditorAction.clickSmilies();
-    chatEditorAction.MessageSend();
-    //emoji表情
-    twemoji.parse(document.getElementById('emoji-list'), {size: 36});
-    //滚动条美化
-    $(".chat-left,.smiliesList").niceScroll({
-        cursorcolor:"#bbb",
-        cursoropacitymax:1,
-        touchbehavior:false,
-        cursorwidth:"10px",
-        cursorborder:"0",
-        cursorborderradius:"5px",
-        bouncescroll:true
+    var kfid,id;
+    $.ajax({
+        async : false,
+        type:'get',
+        url:'http://dface.cn/wapp/customer_service/init?Access-Control-Allow-Origin=1',
+        xhrFields: {
+            withCredentials: true
+        },
+        processData: true,
+        success: function(data){
+            kfid = data.kfid;
+            getData.AvatarListData();    //获取聊天好友列表
+            chatAction();
+            twemoji.parse(document.getElementById('emoji-list'), {size: 36});   //emoji表情
+            //滚动条美化
+            $(".chat-left,.smiliesList").niceScroll({
+                cursorcolor:"#bbb",
+                cursoropacitymax:1,
+                touchbehavior:false,
+                cursorwidth:"4px",
+                cursorborder:"0",
+                cursorborderradius:"5px",
+                bouncescroll:true
+            });
+        },
+        error: function(a,b,c){
+            alert('初始化失败')
+        }
+    });
+    $(document).ready(function () {
+        connection = new Strophe.Connection(BOSH_SERVICE);
+        connection.connect(kfid + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
     });
 </script>
 

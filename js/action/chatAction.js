@@ -1,111 +1,49 @@
-var	kfid = '546afc5041593103f39d0100';
-//avatar事件
-var avatarAction = {
-	getAvatarList:function(){
-		$.ajax({
-			async : false,
-			type:'get',
-			url:'friend.json',
-			data: {"id":kfid},
-			xhrFields: {
-				withCredentials: true
-			},
-			processData: true,
-			success: function(data){
-				$('.loading').fadeOut("100");
-				var AvatarTemplate = Handlebars.compile($("#avatar").html());
-				$('.chat-left').append(AvatarTemplate(data));
-			},
-			error: function(a,b,c){
-				$('.loading').remove();
-				$('.chat-left').append('<div class="update"><a href="javascript:location.reload();">重新加载</a></div>');
-			}
-		});
-	},
-	clickAvatarList:function(){
-		$('.avatar').on('click',function(){
-			$(this).addClass('hover').siblings().removeClass('hover');	//设置点击后的背景颜色
-			$('.chatHeight').empty();	//清除聊天
-			$('.chat_editor').fadeIn("300"); //textarea出现
-			$('.avatarIcon').fadeIn("300"); //详情icon出现
-			$('.boxBg').empty(); //清除上次好友详情
-			var id = $(this).find('.avatarID').html();	//获取好友列表中的ID
-			$(".inputArea textarea").focus();	//获取输入框焦点
-			//ajax拉去好友详情信息
-			$.ajax({
-				async : false,
-				type:'get',
-				url:'http://shop.dface.cn/api_user_info/basic?id='+id+'&Access-Control-Allow-Origin=1',
-				data: {"id":id},
-				xhrFields: {
-					withCredentials: true
-				},
-				processData: true,
-				success: function(data){
-					var AvatarInfroTemplate = Handlebars.compile($("#avatarInfro").html());
-					Handlebars.registerHelper("compare",function(v1,v2,options){
-						if(v1==v2){
-							return options.fn(this);
-						}else{
-							return options.inverse(this);
-						}
-					});
-					$('.boxBg').append(AvatarInfroTemplate(data));
-					$('.boxClose a').on('click',function(){
-						$('.boxBg').fadeOut("300");
-
-					});
-				},
-				error: function(a,b,c){
-					alert('好友详情加载失败');
-				}
-			});
-		});
-	},
-	clickAvatarIcon: function () {
-		$('.avatarIcon a').on('click',function(e){
-			$('.boxBg').fadeToggle("300");
-			e.stopPropagation();
-		});
-	}
+var chatAction = function(){
+	$('.avatar').on('click',function(){
+		$(this).addClass('hover').siblings().removeClass('hover');
+		$('.chatHeight').empty();
+		$('.chat_editor').fadeIn("300");
+		$('.avatarIcon').fadeIn("300");
+		$('.boxBg').empty();
+		$('.unreadDot').remove();
+		id = $(this).find('.avatarID').html();
+		$(".inputArea textarea").focus();
+		getData.AvatarInfroData();	//获取好友详细信息
+		getData.HistoryData();	//获取历史消息
+		$('.chatContainer').scrollTop($('.chatHeight').height());
+	});
+	$('.avatarIcon a').on('click',function(e){
+		$('.boxBg').fadeToggle("300");
+		e.stopPropagation();
+	});
+	$('.allBt').on('click',function(e){
+		$('.smiliesAll').fadeToggle("300");
+		e.stopPropagation();
+	});
+	$(document).click(function(){
+		$('.smiliesAll').fadeOut("300");
+	});
+	//点击表情
+	var str;
+	$('.hotSmilies li').on('click',function(){
+		$(".inputArea textarea").focus();	//获取输入框焦点
+		$(".inputArea textarea").val($(".inputArea textarea").val() + '[' + $(this).attr("title") + ']');
+		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
+	});
+	$(".inputArea textarea").ctrlEnter("button", function () {
+		webchat.addMessageDemo();
+		$('.inputArea textarea').val('');
+		$('.chatContainer').scrollTop($('.chatHeight').height());
+		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
+	});
+	//button发送消息
+	$(".inputArea button").on("click",function(chatMessage){
+		webchat.addMessageDemo();
+		$('.inputArea textarea').val('');
+		$('.chatContainer').scrollTop($('.chatHeight').height());
+		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
+	});
 };
-//编辑框点击事件
-var chatEditorAction = {
-	clickSmilies:function(){
-		//点击全部表情 显示隐藏
-		$('.allBt').on('click',function(e){
-			$('.smiliesAll').fadeToggle("300");
-			e.stopPropagation();
-		});
-		$(document).click(function(){
-			$('.smiliesAll').fadeOut("300");
-		});
-		//点击表情
-		var str;
-		$('.hotSmilies li').on('click',function(){
-			$(".inputArea textarea").focus();	//获取输入框焦点
-			$(".inputArea textarea").val($(".inputArea textarea").val() + '[' + $(this).attr("title") + ']');
-			twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
-		})
-	},
-	MessageSend:function(){
-		//Ctrl+Enter发送消息
-		$(".inputArea textarea").ctrlEnter("button", function () {
-			webchat.addMessageDemo();
-			$('.inputArea textarea').val('');
-			$('.chatContainer').scrollTop($('.chatHeight').height());
-			twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
-		});
-		//button发送消息
-		$(".inputArea button").on("click",function(chatMessage){
-			webchat.addMessageDemo();
-			$('.inputArea textarea').val('');
-			$('.chatContainer').scrollTop($('.chatHeight').height());
-			twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
-		});
-	}
-};
-
 
 var myNotificationListener = {
 	onMessageReceived: function (chatMessage) {
@@ -130,6 +68,22 @@ var myNotificationListener = {
 		newChatMessage = newChatMessage.replace(/\[脸13\]/g, '&#x1F60F;');
 		newChatMessage = newChatMessage.replace(/\[脸14\]/g, '&#x1F610;');
 		newChatMessage = newChatMessage.replace(/\[脸15\]/g, '&#x1F611;');
+		$.ajax({
+			async : false,
+			type:'get',
+			url:'http://dface.cn/wapp/customer_service/chat?'+'Access-Control-Allow-Origin=1',
+			data: {"from_uid":kfid,"to_uid":id,"msg":newChatMessage},
+			xhrFields: {
+				withCredentials: true
+			},
+			processData: true,
+			success: function(data){
+				console.log('成功');
+			},
+			error: function(a,b,c){
+				console.log('失败');
+			}
+		});
 		if($.trim(chatMessage['text']) == ''){
 		}else{
 			var MeMessageReceived = '';
@@ -151,45 +105,6 @@ var myNotificationListener = {
 			$('.chatHeight').append(MeMessageReceived);
 		}
 	},
-	onMessage:function(msg){
-		var to = msg.getAttribute('to');
-		var from = msg.getAttribute('from');
-		var type = msg.getAttribute('type');
-		var elems = msg.getElementsByTagName('body');
-		var uid = from.split("@")[0];
-		if (type == "chat" && elems.length > 0) {
-			$.ajax({
-				async : false,
-				type:'get',
-				url:'http://shop.dface.cn/api_user_info/basic?id='+uid+'&Access-Control-Allow-Origin=1',
-
-				success: function(data){
-					var YouMessageReceived = '';
-					YouMessageReceived += '<div class="chatItem you">'
-					YouMessageReceived += '<div class="time">12:00</div>'
-					YouMessageReceived += '<div class="chatItemContent">'
-					YouMessageReceived += '<div class="avatar-head">'
-					YouMessageReceived += '<a href="#"><img src="'+data.logo_thumb+'"></a>'
-					YouMessageReceived += '</div>'
-					YouMessageReceived += '<div class="chatCloud">'
-					YouMessageReceived += '<h3>'+data.name+'</h3>'
-					YouMessageReceived += '<div class="chatCloudText">'
-					YouMessageReceived += '<div class="cloudBody">' + Strophe.getText(elems[0]) + '</div>'
-					YouMessageReceived += '<div class="cloudArrow"></div>'
-					YouMessageReceived += '</div>'
-					YouMessageReceived += '</div>'
-					YouMessageReceived += '</div>'
-					YouMessageReceived += '</div>'
-					$('.chatHeight').append(YouMessageReceived);
-				},
-				error: function(a,b,c){
-					alert('信息读取失败');
-				}
-			});
-		}
-		$('.chatContainer').scrollTop($('.chatHeight').height());
-		return true;
-	},
 	onTextSending: function (ChatMessage) {
 
 	},
@@ -205,8 +120,3 @@ var myNotificationListener = {
 webchat.init("xmpp.dface.cn", 5000, "webchat");
 webchat.setAccount("zhang3", "123456");
 webchat.setNotificationListener(myNotificationListener);
-$(document).ready(function () {
-	connection = new Strophe.Connection(BOSH_SERVICE);
-	connection.connect(kfid + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
-});
-
