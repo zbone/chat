@@ -1,5 +1,3 @@
-var BOSH_SERVICE = 'http://shop.dface.cn/http-bind/'
-var connection = null;
 var webchat = {
     _listener: null,
     _chatMap: null,
@@ -31,31 +29,23 @@ var webchat = {
         }
     },
     onMessage:function(msg){
-        var chatJson = {};
         var to = msg.getAttribute('to');
         var from = msg.getAttribute('from');
         var type = msg.getAttribute('type');
         var elems = msg.getElementsByTagName('body');
+        var text = Strophe.getText(elems[0]);
         var uid = from.split("@")[0];
         var mid = msg.getAttribute('id');
-
-        if (type == "chat" && elems.length > 0) {
-
-            $.ajax({
-                async : false,
-                type:'get',
-                url:'http://shop.dface.cn/api_user_info/basic?id='+uid+'&Access-Control-Allow-Origin=1',
-                success: function(data){
-                   /* $.get('http://dface.cn/wapp/customer_service/talk?Access-Control-Allow-Origin=1',{"kfid":kfid,"uid":uid,"mid":mid},function(){
-                    })*/
-                    console.log(Strophe.getText(elems[0]))
-                },
-                error: function(a,b,c){
-                    alert('信息读取失败');
-                }
-            });
+        var avatarId = new Array();
+        avatarId['uid'] = uid;
+        avatarId['text'] = Strophe.getText(elems[0]);
+        if(id == avatarId['uid']){
+            if (type == "chat" && elems.length > 0) {
+                getData.receivedMessageData(uid,mid,text);
+            }
+        }else{
+            console.log('XXXX来了一条消息');
         }
-        console.log(Strophe.getText(elems[0]));
         return true;
     },
     addMessageDemo: function () {
@@ -70,12 +60,12 @@ var webchat = {
         chatMessage['unread'] = true;
         chatMessage['type'] = MessageType.MESSAGE_TYPE__CHAT_TEXT;
 
-        if (this._chatMap[chatMessage['from']] == null) {
+        /*if (this._chatMap[chatMessage['from']] == null) {
             this._chatMap.put(chatMessage['from'], new Array());
         }
 
         var array = this._chatMap.get(chatMessage['from']);
-        array.push(chatMessage['text']);
+        array.push(chatMessage['text']);*/
 
         this._listener.onMessageReceived(chatMessage);
     }

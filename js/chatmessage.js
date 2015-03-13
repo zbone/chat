@@ -1,3 +1,5 @@
+var BOSH_SERVICE = 'http://shop.dface.cn/http-bind/'
+var connection = null;
 var MessageStatus = {
     MESSAGE_STATUS__DELIVER_FAILED: 1,
     MESSAGE_STATUS__DELIVERING: 2,

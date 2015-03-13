@@ -37,35 +37,22 @@
             {{#with to}}
                 {{#compare id}}
                     <div class="chatItem you">
-                        <div class="time">{{../../time}}</div>
-                        <div class="chatItemContent">
-                            <div class="avatar-head"><img src="{{../../from.logo}}"></div>
-                            <div class="chatCloud">
-                                <h3>{{../../from.name}}</h3>
-                                <div class="chatCloudText">
-                                    <div class="cloudBody">{{../../msg}}</div>
-                                    <div class="cloudArrow"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 {{else}}
                     <div class="chatItem me">
-                        <div class="time">{{../../time}}</div>
+                {{/compare}}
+                        <div class="time">{{../time}}</div>
                         <div class="chatItemContent">
-                            <div class="avatar-head"><img src="{{logo}}"></div>
+                            <div class="avatar-head"><img src="{{../from.logo}}"></div>
                             <div class="chatCloud">
-                                <h3>{{name}}</h3>
+                                <h3>{{../from.name}}</h3>
                                 <div class="chatCloudText">
-                                    <div class="cloudBody">{{../../msg}}</div>
+                                    <div class="cloudBody">{{../msg}}</div>
                                     <div class="cloudArrow"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {{/compare}}
             {{/with}}
-
         {{/each}}
     </script>
     <div class="chat">

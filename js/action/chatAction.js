@@ -30,12 +30,6 @@ var chatAction = function(){
 		$(".inputArea textarea").val($(".inputArea textarea").val() + '[' + $(this).attr("title") + ']');
 		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
 	});
-	$(".inputArea textarea").ctrlEnter("button", function () {
-		webchat.addMessageDemo();
-		$('.inputArea textarea').val('');
-		$('.chatContainer').scrollTop($('.chatHeight').height());
-		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
-	});
 	//button发送消息
 	$(".inputArea button").on("click",function(chatMessage){
 		webchat.addMessageDemo();
@@ -44,7 +38,12 @@ var chatAction = function(){
 		twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
 	});
 };
-
+$(".inputArea textarea").ctrlEnter("button", function () {
+	webchat.addMessageDemo();
+	$('.inputArea textarea').val('');
+	$('.chatContainer').scrollTop($('.chatHeight').height());
+	twemoji.parse(document.getElementsByTagName('body')[0], {size: 36});
+});
 var myNotificationListener = {
 	onMessageReceived: function (chatMessage) {
 		var newChatMessage = chatMessage['text'].replace(/\n/g, '_@').replace(/\r/g, '_#');
@@ -78,32 +77,33 @@ var myNotificationListener = {
 			},
 			processData: true,
 			success: function(data){
+				if($.trim(chatMessage['text']) == ''){
+				}else{
+					var MeMessageReceived = '';
+					MeMessageReceived += '<div class="chatItem me">'
+					MeMessageReceived += '<div class="time">12:00</div>'
+					MeMessageReceived += '<div class="chatItemContent">'
+					MeMessageReceived += '<div class="avatar-head">'
+					MeMessageReceived += '<a href="#"><img src="images/02.jpg"></a>'
+					MeMessageReceived += '</div>'
+					MeMessageReceived += '<div class="chatCloud">'
+					MeMessageReceived += '<h3>干菜包的小伙伴</h3>'
+					MeMessageReceived += '<div class="chatCloudText">'
+					MeMessageReceived += '<div class="cloudBody">' +newChatMessage+ '</div>'
+					MeMessageReceived += '<div class="cloudArrow"></div>'
+					MeMessageReceived += '</div>'
+					MeMessageReceived += '</div>'
+					MeMessageReceived += '</div>'
+					MeMessageReceived += '</div>'
+					$('.chatHeight').append(MeMessageReceived);
+				}
 				console.log('成功');
 			},
 			error: function(a,b,c){
 				console.log('失败');
 			}
 		});
-		if($.trim(chatMessage['text']) == ''){
-		}else{
-			var MeMessageReceived = '';
-			MeMessageReceived += '<div class="chatItem me">'
-			MeMessageReceived += '<div class="time">12:00</div>'
-			MeMessageReceived += '<div class="chatItemContent">'
-			MeMessageReceived += '<div class="avatar-head">'
-			MeMessageReceived += '<a href="#"><img src="images/02.jpg"></a>'
-			MeMessageReceived += '</div>'
-			MeMessageReceived += '<div class="chatCloud">'
-			MeMessageReceived += '<h3>干菜包的小伙伴</h3>'
-			MeMessageReceived += '<div class="chatCloudText">'
-			MeMessageReceived += '<div class="cloudBody">' +newChatMessage+ '</div>'
-			MeMessageReceived += '<div class="cloudArrow"></div>'
-			MeMessageReceived += '</div>'
-			MeMessageReceived += '</div>'
-			MeMessageReceived += '</div>'
-			MeMessageReceived += '</div>'
-			$('.chatHeight').append(MeMessageReceived);
-		}
+
 	},
 	onTextSending: function (ChatMessage) {
 
