@@ -152,13 +152,13 @@
 <script type="text/javascript" src="http://static.dface.cn/js/strophe.js"></script>
 <script type="text/javascript" src="js/lib/ctrlEnter.js"></script>
 <script type="text/javascript" src="js/lib/map.js"></script>
-<script type="text/javascript" src="js/lib/zoom.min.js"></script>
 <script type="text/javascript" src="js/getData.js"></script>
 <script type="text/javascript" src="js/chatmessage.js"></script>
 <script type="text/javascript" src="js/webchat.js"></script>
+<script type="text/javascript" src="js/emojiReplace.js"></script>
 <script type="text/javascript" src="js/action/chatAction.js"></script>
 <script>
-    var kfid,id;
+    var kfid,id,password;
     $.ajax({
         async : false,
         type:'get',
@@ -169,6 +169,7 @@
         processData: true,
         success: function(data){
             kfid = data.kfid;
+            password = data.password;
             getData.AvatarListData();    //获取聊天好友列表
             chatAction();
             twemoji.parse(document.getElementById('emoji-list'), {size: 36});   //emoji表情
@@ -189,7 +190,7 @@
     });
     $(document).ready(function () {
         connection = new Strophe.Connection(BOSH_SERVICE);
-        connection.connect(kfid + "@dface.cn", "12b66c87ad7ae05d", webchat.onConnect);
+        connection.connect(kfid + "@dface.cn", password, webchat.onConnect);
     });
 </script>
 

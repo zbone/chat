@@ -1,3 +1,4 @@
+var avatarList = new Array();
 var webchat = {
     _listener: null,
     _chatMap: null,
@@ -38,13 +39,24 @@ var webchat = {
         var mid = msg.getAttribute('id');
         var avatarId = new Array();
         avatarId['uid'] = uid;
-        avatarId['text'] = Strophe.getText(elems[0]);
-        if(id == avatarId['uid']){
-            if (type == "chat" && elems.length > 0) {
-                getData.receivedMessageData(uid,mid,text);
+        avatarId['time'] = nowTime;
+        avatarId['unreadDot'] = 0;
+        $.get('http://dface.cn/wapp/customer_service/talk?Access-Control-Allow-Origin=1',{"kfid":kfid,"uid":uid,"mid":mid},function(){});
+        if(type == "chat" && elems.length > 0){
+            for(var i=0;i<avatarList.length;i++){
+                if(avatarId['uid'] == avatarList[i].uid) {
+                    if(id == avatarId['uid']){
+                        getData.receivedMessageData(uid,mid,text);
+                    }else{
+                        avatarList[i].unreadDot = avatarList[i].unreadDot + 1;
+                        console.log(avatarList[i].unreadDot);
+                    }
+                    return true;
+                }
             }
-        }else{
-            console.log('XXXX来了一条消息');
+            //$('.chat-left').prepend('');
+            console.log('新的聊天人')
+            avatarList.push(avatarId);
         }
         return true;
     },

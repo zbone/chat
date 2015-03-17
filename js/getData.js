@@ -82,12 +82,9 @@ var getData = {
             type:'get',
             url:'http://shop.dface.cn/api_user_info/basic?id='+uid+'&Access-Control-Allow-Origin=1',
             success: function(data){
-                $.get('http://dface.cn/wapp/customer_service/talk?Access-Control-Allow-Origin=1',{"kfid":kfid,"uid":uid,"mid":mid},function(){
-
-                });
                 var YouMessageReceived = '';
                 YouMessageReceived += '<div class="chatItem you">'
-                YouMessageReceived += '<div class="time">12:00</div>'
+                YouMessageReceived += '<div class="time">'+ nowTime +'</div>'
                 YouMessageReceived += '<div class="chatItemContent">'
                 YouMessageReceived += '<div class="avatar-head">'
                 YouMessageReceived += '<a href="#"><img src="'+data.logo_thumb+'"></a>'
@@ -106,6 +103,53 @@ var getData = {
             },
             error: function(a,b,c){
                 alert('信息读取失败');
+            }
+        });
+    },
+    sendMessageData:function(){
+        $.ajax({
+            async : false,
+            type:'get',
+            url:'http://dface.cn/wapp/customer_service/chat?'+'Access-Control-Allow-Origin=1',
+            data: {"from_uid":kfid,"to_uid":id,"msg":newChatMessage},
+            xhrFields: {
+                withCredentials: true
+            },
+            processData: true,
+            success: function(data){
+                var _time=data.time;
+                if($.trim(newChatMessage) == ''){
+                }else{
+                    $.ajax({
+                        async : false,
+                        type:'get',
+                        url:'http://shop.dface.cn/api_user_info/basic?'+'Access-Control-Allow-Origin=1',
+                        data:{"id":kfid},
+                        success:function(data){
+                            var MeMessageReceived = '';
+                            MeMessageReceived += '<div class="chatItem me">'
+                            MeMessageReceived += '<div class="time">'+_time+'</div>'
+                            MeMessageReceived += '<div class="chatItemContent">'
+                            MeMessageReceived += '<div class="avatar-head">'
+                            MeMessageReceived += '<a href="#"><img src="'+data.logo_thumb+'"></a>'
+                            MeMessageReceived += '</div>'
+                            MeMessageReceived += '<div class="chatCloud">'
+                            MeMessageReceived += '<h3>'+data.name+'</h3>'
+                            MeMessageReceived += '<div class="chatCloudText">'
+                            MeMessageReceived += '<div class="cloudBody">' +newChatMessage+ '</div>'
+                            MeMessageReceived += '<div class="cloudArrow"></div>'
+                            MeMessageReceived += '</div>'
+                            MeMessageReceived += '</div>'
+                            MeMessageReceived += '</div>'
+                            MeMessageReceived += '</div>'
+                            $('.chatHeight').append(MeMessageReceived);
+                            console.log('成功');
+                        }
+                    })
+                }
+            },
+            error: function(a,b,c){
+                console.log('失败');
             }
         });
     }
