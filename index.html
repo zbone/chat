@@ -23,9 +23,11 @@
 					<h3>{{user_name}}</h3>
                     <span class="avatarID">{{id}}</span>
 					<span class="time">{{time}}</span>
-                    {{#if unreadDot}}
+                    {{#compare unreadDot}}
+                    <span class="unreadDot" style="display: none;"></span>
+                    {{else}}
                     <span class="unreadDot">{{unreadDot}}</span>
-                    {{/if}}
+                    {{/compare}}
 				</div>
 				<div class="line"></div>
 			</div>

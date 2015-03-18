@@ -49,13 +49,17 @@ var webchat = {
                         getData.receivedMessageData(uid,mid,text);
                     }else{
                         avatarList[i].unreadDot = avatarList[i].unreadDot + 1;
-                        console.log(avatarList[i].unreadDot);
+                        $(".avatarID").each(function() {
+                            if ($(this).html() == avatarId.uid) {
+                                $(this).siblings(".unreadDot").show().html(avatarList[i].unreadDot);
+                            }
+                        });
                     }
                     return true;
                 }
             }
             //$('.chat-left').prepend('');
-            console.log('新的聊天人')
+            console.log(avatarId['uid']+'新的聊天人')
             avatarList.push(avatarId);
         }
         return true;
@@ -71,11 +75,9 @@ var webchat = {
         chatMessage['timeStamp'] = new Date();
         chatMessage['unread'] = true;
         chatMessage['type'] = MessageType.MESSAGE_TYPE__CHAT_TEXT;
-
         /*if (this._chatMap[chatMessage['from']] == null) {
             this._chatMap.put(chatMessage['from'], new Array());
         }
-
         var array = this._chatMap.get(chatMessage['from']);
         array.push(chatMessage['text']);*/
 

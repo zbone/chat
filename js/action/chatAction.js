@@ -5,7 +5,7 @@ var chatAction = function(){
 		$('.chat_editor').fadeIn("300");
 		$('.avatarIcon').fadeIn("300");
 		$('.boxBg').empty();
-		$(this).find('.unreadDot').remove();
+		$(this).find('.unreadDot').empty().hide();
 		id = $(this).find('.avatarID').html();
 		$(".inputArea textarea").focus();
 		getData.AvatarInfroData();	//获取好友详细信息

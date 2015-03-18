@@ -12,7 +12,19 @@ var getData = {
             success: function(data){
                 $('.loading').fadeOut("100");
                 var AvatarTemplate = Handlebars.compile($("#avatar").html());
+                Handlebars.registerHelper("compare",function(v1,options){
+                    if(v1==''){
+                        return options.fn(this);
+                    }else{
+                        return options.inverse(this);
+                    }
+                });
                 $('.chat-left').append(AvatarTemplate(data));
+
+                for(var i=0;i<data.length;i++){
+                    console.log(data[i].id);
+                }
+
             },
             error: function(a,b,c){
                 $('.loading').remove();
@@ -106,20 +118,23 @@ var getData = {
             }
         });
     },
+    receivedNewMessageData:function(){
+
+    },
     sendMessageData:function(){
-        $.ajax({
-            async : false,
-            type:'get',
-            url:'http://dface.cn/wapp/customer_service/chat?'+'Access-Control-Allow-Origin=1',
-            data: {"from_uid":kfid,"to_uid":id,"msg":newChatMessage},
-            xhrFields: {
-                withCredentials: true
-            },
-            processData: true,
-            success: function(data){
-                var _time=data.time;
-                if($.trim(newChatMessage) == ''){
-                }else{
+        if($.trim(newChatMessage) == ''){
+        }else{
+            $.ajax({
+                async : false,
+                type:'get',
+                url:'http://dface.cn/wapp/customer_service/chat?'+'Access-Control-Allow-Origin=1',
+                data: {"from_uid":kfid,"to_uid":id,"msg":newChatMessage},
+                xhrFields: {
+                    withCredentials: true
+                },
+                processData: true,
+                success: function(data){
+                    var _time=data.time;
                     $.ajax({
                         async : false,
                         type:'get',
@@ -145,12 +160,12 @@ var getData = {
                             $('.chatHeight').append(MeMessageReceived);
                             console.log('成功');
                         }
-                    })
+                    });
+                },
+                error: function(a,b,c){
+                    console.log('失败');
                 }
-            },
-            error: function(a,b,c){
-                console.log('失败');
-            }
-        });
+            });
+        }
     }
 };
